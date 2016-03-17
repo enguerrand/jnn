@@ -1,2 +1,2 @@
 # jnn
-A reusable Java NeuralNetwork implementation
+A Java NeuralNetwork implementation
