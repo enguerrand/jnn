@@ -1,18 +1,33 @@
 package de.rochefort.jnn;
 
+import de.rochefort.jnn.NeuronLayer.NeuronLayerType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
-
-import de.rochefort.jnn.NeuronLayer.NeuronLayerType;
 
 public class NetworkBuilder {
 	private final int inputsCount;
 	private final int outputsCount;
 	private int inputLayerNeuronCount;
 	private HashMap<NeuronLayerType, Function<Double, Double>> activationFunctions = new HashMap<>();
+	/**
+	 * The number of neurons in each hidden layer. (I.e. one integer entry per hidden layer)
+	 */
 	private List<Integer> layerNeuronCounts = new ArrayList<>();
+
+	/**
+	 * Constructs a default builder for a NeuralNetwork with the given number of inputs and outputs.
+	 * Unless the builder is customized further the following configuration applies:
+	 * Input Layer Count = Inputs count
+	 * No hidden layer
+	 * Activation function parameter p = 1
+	 * Activation function 1.0 / (1 + Math.pow(Math.E, (- input) / activationParam));
+	 *
+	 * @param inputsCount   Number of inputs
+	 * @param outputsCount  number of outputs
+     */
 	public NetworkBuilder(int inputsCount, int outputsCount) {
 		setDefaultActivationFunctionParameterAllLayers(1);
 		this.inputsCount = inputsCount;
